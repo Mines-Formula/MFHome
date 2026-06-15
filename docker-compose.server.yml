@@ -1,11 +1,4 @@
 services:
   web:
-    build:
-      context: ./srcMFHome
-      dockerfile: Dockerfile
-    image: mfhome-web
-    container_name: MFHome
     network_mode: host
-    environment:
-      - FLASK_ENV=production
-    restart: unless-stopped
+    ports: !reset []
