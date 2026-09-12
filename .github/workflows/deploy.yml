@@ -24,10 +24,6 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      
-      - name: Print Working Directory
-        run: pwd
-
       - name: Update repository
         working-directory: /srv/formula/MFHome
         run: |
