@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 concurrency:
-  group: mfhome-deployment
+  group: production-deployment
   cancel-in-progress: false
 
 jobs:
@@ -24,6 +24,10 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      
+      - name: Print Working Directory
+        run: pwd
+
       - name: Update repository
         working-directory: /srv/formula/MFHome
         run: |
@@ -53,7 +57,7 @@ jobs:
           docker compose \
             -f docker-compose.yml \
             up --detach --build --remove-orphans
-
+            
       - name: Show deployment status
         if: always()
         working-directory: /srv/formula/MFHome
