@@ -17,7 +17,8 @@ jobs:
 
     defaults:
       run:
-        working-directory: "/srv/formula/MFHome"
+        working-directory: .
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.14
