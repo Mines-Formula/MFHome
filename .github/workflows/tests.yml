@@ -24,13 +24,61 @@ jobs:
         python-version: "3.14"
         cache: "pip"
         cache-dependency-path: srcMFHome/requirements.txt
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 -r srcMFHome/requirements.txt
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 srcMFHome --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 srcMFHome --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Validate Docker Compose configuration
+      working-directory: /srv/formula/MFHome
+      run: |
+        docker compose \
+          -f docker-compose.yml \
+          config --quiet
+
+    - name: Build and deploy
+      working-directory: /srv/formula/MFHome
+      run: |
+        # --wait blocks until containers are healthy/ready.
+        docker compose \
+          -f docker-compose.yml \
+          up --detach --build --remove-orphans --wait
+
+    - name: Validate Docker Server Configuration
+      working-directory: /srv/formula/MFHome
+      run: |
+        docker compose \
+          -f docker-compose.yml \
+          -f docker-compose.server.yml \
+          config --quiet
+    
+    - name: Deploy with server override
+      working-directory: /srv/formula/MFHome
+      run: |
+        # --wait blocks until containers are healthy/ready.
+        docker compose \
+          -f docker-compose.yml \
+          -f docker-compose.server.yml \
+          up --detach --build --remove-orphans
+
+    - name: Show logs if failed
+      if: failure()
+      working-directory: /srv/formula/MFHome
+      run: |
+        docker compose -f docker-compose.yml logs
+    
+    - name: Show deployment status
+      if: always()
+      working-directory: /srv/formula/MFHome
+      run: |
+        docker compose \
+          -f docker-compose.yml \
+          ps
