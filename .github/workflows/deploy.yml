@@ -7,7 +7,7 @@ on:
     branches:
       - main
   pull_request:
-    branches: [ "feat/deploy" ]
+    branches: [ "main" ]
 
 concurrency:
   group: production-deployment
