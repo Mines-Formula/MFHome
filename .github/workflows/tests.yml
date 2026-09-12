@@ -15,6 +15,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: "/srv/formula/MFHome"
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.14
@@ -37,20 +40,13 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 srcMFHome --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: PWD
-      working-directory: /srv/formula/MFHome
-      run: pwd
-
-
     - name: Validate Docker Compose configuration
-      working-directory: /srv/formula/MFHome
       run: |
         docker compose \
           -f docker-compose.yml \
           config --quiet
 
     - name: Build and deploy
-      working-directory: /srv/formula/MFHome
       run: |
         # --wait blocks until containers are healthy/ready.
         docker compose \
@@ -58,7 +54,6 @@ jobs:
           up --detach --build --remove-orphans --wait
 
     - name: Validate Docker Server Configuration
-      working-directory: /srv/formula/MFHome
       run: |
         docker compose \
           -f docker-compose.yml \
@@ -66,7 +61,6 @@ jobs:
           config --quiet
     
     - name: Deploy with server override
-      working-directory: /srv/formula/MFHome
       run: |
         # --wait blocks until containers are healthy/ready.
         docker compose \
@@ -76,13 +70,11 @@ jobs:
 
     - name: Show logs if failed
       if: failure()
-      working-directory: /srv/formula/MFHome
       run: |
         docker compose -f docker-compose.yml logs
     
     - name: Show deployment status
       if: always()
-      working-directory: /srv/formula/MFHome
       run: |
         docker compose \
           -f docker-compose.yml \
