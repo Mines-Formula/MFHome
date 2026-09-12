@@ -7,7 +7,7 @@ on:
     branches:
       - main
   pull_request:
-    branches: [ "feat/deploy" ]
+    branches: [ "main" ]
 
 concurrency:
   group: production-deployment
@@ -30,8 +30,8 @@ jobs:
           set -euo pipefail
 
           git fetch --prune origin
-          git checkout main
-          git reset --hard origin/main
+          git checkout feat/deploy
+          git reset --hard origin/feat/deploy
 
           # The parent reset does not discard changes inside submodules.
           # Clean them so stale/generated DBC files cannot prevent checkout.
