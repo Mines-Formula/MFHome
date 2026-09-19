@@ -1,0 +1,30 @@
+name: Deploy MFHome
+
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+  
+
+jobs:
+  deploy:
+    runs-on: 
+      - self-hosted
+      - Linux
+      - mfhome
+
+    steps:
+      - name: Stop development environment
+        working-directory: /srv/formula/MFHome
+        run: |
+          docker compose \
+            -f docker-compose.dev.yml \
+            down
+
+      - name: Start production environment
+        working-directory: /srv/formula/MFHome
+        run: |
+          docker compose \
+            -f docker-compose.yml \
+            up --detach --build --remove-orphans
