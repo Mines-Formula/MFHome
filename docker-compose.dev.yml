@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: ./srcMFHome
+      dockerfile: Dockerfile
+    container_name: MFHome-dev
+    ports:
+      - "81:80"
+    environment:
+      - FLASK_ENV=development
+    restart: unless-stopped
