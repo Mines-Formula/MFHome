@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: ./srcMFHome
+      network: host
+    network_mode: host
+    ports: 
+    - "6768:6767"
+    stop_signal: SIGINT
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+    environment:
+      - FLASK_ENV=production
+      - DATA_DIR=/data
+    command: ["flask", "--app", "app.app:app", "run", "-h", "0.0.0.0", "-p", "6767"]
