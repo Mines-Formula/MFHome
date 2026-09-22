@@ -11,9 +11,17 @@
     <h1 class="centered-text">Welcome to MFHome</h1>
     <h3 class="centered-text">Your hub of Mines Formula sites</h3>
 
+    <div class="devops-toggle">
+        <label>
+            <span>Toggle DevOps</span>
+            <input type="checkbox" id="devopsToggle">
+        </label>
+    </div>
+
     <img class="corner-logo" src="../static/img/MFHome.png">
 
     <main>
+        <!-- regular card containers -->
         <div class="card-container">
             <div class="card">
                 <img src="../static/img/ThePipeline.png">
@@ -65,7 +73,35 @@
                 </div>
             </div>
         -->
+            <!-- DevOps Card Containers -->
+            <div class="card devops-card">
+                <img src="../static/img/ThePipeline.png">
+                <div class="card-content">
+                    <h2>DevOps Pipeline</h2>
+                    <p>For all of your data uploading debugging.</p>
+                    <a class="btn" href="http://fsaelinux.mines.edu:6768/" target="_blank">Go There</a>
+                </div>
+            </div>
+            <div class="card devops-card">
+                <img src="../static/img/MFHome.png">
+                <div class="card-content">
+                    <h2>DevOps MfHome</h2>
+                    <p>Your debugging hub for the hub of Mines Formula sites.</p>
+                    <a class="btn" href="http://fsaelinux.mines.edu:81/" target="_blank">Go There</a>
+                </div>
+            </div>
         </div>
     </main>
+    <!-- script to make DevOps cards appear brought to you by chatgpt -->
+    <script>
+        const devopsToggle = document.getElementById("devopsToggle");
+        const devopsCards = document.querySelectorAll(".devops-card");
+
+        devopsToggle.addEventListener("change", function() {
+            devopsCards.forEach(card => {
+                card.classList.toggle("visible", this.checked);
+            });
+        });
+    </script>
 </body>
 </html>
