@@ -3,128 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MFHome</title>
-    <link rel="stylesheet" href="../static/index.css">
+    <title>MFHome | Mines Formula</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-
-    <h1 class="centered-text">Welcome to MFHome</h1>
-    <h3 class="centered-text">Your hub of Mines Formula sites</h3>
-
-    <div class="devops-toggle">
-        <label>
-            <span>Toggle DevEnv</span>
-            <input type="checkbox" id="devopsToggle">
-        </label>
-    </div>
-
-    <img class="corner-logo" src="{{ url_for('static', filename='img/MFHome.png')}}">
-
-    <main>
-        <!-- regular card containers -->
-        <div class="card-container">
-            <div class="card">
-                <img src="{{ url_for('static', filename='img/ThePipeline.png')}}">
-                <div class="card-content">
-                    <h2>The Pipeline</h2>
-                    <p>For all of your data uploading needs.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:6767/" target="_blank">Go There</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='img/Grafana.png')}}">
-                <div class="card-content">
-                    <h2>Grafana</h2>
-                    <p>The home of data visualizations and graphs.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:3000/" target="_blank">Go There</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='img/FormulaWiki.png')}}">
-                <div class="card-content">
-                    <h2>Mines Formula Wiki</h2>
-                    <p>The central hub for all team documentation and technical knowledge.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:4000/" target="_blank">Go There</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='img/Budgeting.png')}}">
-                <div class="card-content">
-                    <h2>Budgeting</h2>
-                    <p>The hub for budgeting, revenue, events, and vendors.</p>
-                    <a class="btn" href="https://c2025-service-28767085-ba2d7d66.us.monday.app/" target="_blank">Go There</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='img/InfluxDB.png')}}">
-                <div class="card-content">
-                    <h2>InfluxDB</h2>
-                    <p>Where uploaded data connects to visualizations.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:8086/signin" target="_blank">Go There</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='img/vaultwardenlogo.png')}}">
-                <div class="card-content">
-                    <h2>Vaultwarden</h2>
-                    <p>Store secrets and tokens.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:8222" target="_blank">Go There</a>
-                </div>
-            </div>
-            <!-- <div class="card">
-                <img src="{{ url_for('static', filename='img/MF_14_Placer.png')}}">
-                <div class="card-content">
-                    <h2>Screen Designer</h2>
-                    <p>Design screens for the driver.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:8000" target="_blank">Go There</a>
-                </div>
-            </div> -->
-            <!-- Sam told us to remove this card until October so people don't join the Monday.
-            <div class="card">
-                <img src="{{ url_for('static', filename='img/MFHome.png')}}">
-                <div class="card-content">
-                    <h2>Feature Request</h2>
-                    <p>Where you can find the feature request form.</p>
-                    <a class="btn" href="https://forms.monday.com/forms/6b26e559297653fdb6ad2e70732037b0?r=use1" target="_blank">Go There</a>
-                </div>
-            </div>
-        -->
-            <!-- DevOps Card Containers -->
-            <div class="card devops-card">
-                <img src="{{ url_for('static', filename='img/TheDevPipeline.png')}}">
-                <div class="card-content">
-                    <h2>DevOps Pipeline</h2>
-                    <p>For all of your data uploading debugging.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:6768/" target="_blank">Go There</a>
-                </div>
-            </div>
-            <div class="card devops-card">
-                <img src="{{ url_for('static', filename='img/MFDev.png')}}">
-                <div class="card-content">
-                    <h2>DevOps MFHome</h2>
-                    <p>Your debugging hub for the hub of Mines Formula sites.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:81/" target="_blank">Go There</a>
-                </div>
-            </div>
-            <div class="card devops-card">
-                <img src="{{ url_for('static', filename='img/DozzleLogo.png')}}">
-                <div class="card-content">
-                    <h2>Dozzle</h2>
-                    <p>Dozzle is a real-time, web-based viewer for Docker containers.</p>
-                    <a class="btn" href="http://fsaelinux.mines.edu:8888/" target="_blank">Go There</a>
-                </div>
-            </div>
+    <header class="site-header">
+        <img class="site-logo" src="{{ url_for('static', filename='img/MFHome_White.png') }}" alt="Mines Formula logo">
+        <div>
+            <h1>Welcome to MFHome</h1>
+            <p class="site-description">Your hub for Mines Formula tools and resources.</p>
         </div>
+    </header>
+
+    <main class="page-content">
+        <section class="tool-section" aria-labelledby="user-tools-heading">
+            <div class="section-heading">
+                <div>
+                    <h2 id="user-tools-heading">User tools</h2>
+                </div>
+            </div>
+            <div class="tool-grid">
+                <article class="tool">
+                    <a class="tool-logo tool-logo--large" href="http://fsaelinux.mines.edu:3000/" target="_blank" rel="noopener noreferrer" aria-label="Open Grafana">
+                        <img src="{{ url_for('static', filename='img/Grafana.png') }}" alt="Grafana">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>Grafana</h3>
+                        <p>The home of data visualizations and graphs.</p>
+                    </div>
+                </article>
+                <article class="tool">
+                    <a class="tool-logo tool-logo--large" href="http://fsaelinux.mines.edu:4000/" target="_blank" rel="noopener noreferrer" aria-label="Open the Mines Formula Wiki">
+                        <img src="{{ url_for('static', filename='img/FormulaWiki.png') }}" alt="Mines Formula Wiki">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>Mines Formula Wiki</h3>
+                        <p>The central hub for team documentation and technical knowledge.</p>
+                    </div>
+                </article>
+                <article class="tool">
+                    <a class="tool-logo tool-logo--large" href="https://c2025-service-28767085-ba2d7d66.us.monday.app/" target="_blank" rel="noopener noreferrer" aria-label="Open budgeting">
+                        <img src="{{ url_for('static', filename='img/Budgeting.png') }}" alt="Budgeting">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>Budgeting</h3>
+                        <p>Manage budgeting, revenue, events, and vendors.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="tool-section developer-section" aria-labelledby="developer-tools-heading">
+            <div class="section-heading">
+                <div>
+                    <h2 id="developer-tools-heading">Developer tools</h2>
+                </div>
+                <label class="devops-toggle" for="devopsToggle">
+                    <span>Show additional DevOps tools</span>
+                    <input type="checkbox" id="devopsToggle" aria-controls="additional-devops-tools">
+                </label>
+            </div>
+            <div class="tool-grid">
+                <article class="tool">
+                    <a class="tool-logo tool-logo--large" href="http://fsaelinux.mines.edu:6767/" target="_blank" rel="noopener noreferrer" aria-label="Open The Pipeline">
+                        <img src="{{ url_for('static', filename='img/ThePipeline.png') }}" alt="The Pipeline">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>The Pipeline</h3>
+                        <p>Upload and manage team data.</p>
+                    </div>
+                </article>
+                <article class="tool">
+                    <a class="tool-logo tool-logo--large" href="http://fsaelinux.mines.edu:8086/signin" target="_blank" rel="noopener noreferrer" aria-label="Open InfluxDB">
+                        <img src="{{ url_for('static', filename='img/InfluxDB.png') }}" alt="InfluxDB">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>InfluxDB</h3>
+                        <p>Where uploaded data connects to visualizations.</p>
+                    </div>
+                </article>
+                <article class="tool">
+                    <a class="tool-logo tool-logo--large" href="http://fsaelinux.mines.edu:8222" target="_blank" rel="noopener noreferrer" aria-label="Open Vaultwarden">
+                        <img src="{{ url_for('static', filename='img/vaultwardenlogo.png') }}" alt="Vaultwarden">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>Vaultwarden</h3>
+                        <p>Securely access shared team secrets and tokens.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="tool-grid additional-devops-tools" id="additional-devops-tools" hidden>
+                <article class="tool">
+                    <a class="tool-logo tool-logo--large" href="http://fsaelinux.mines.edu:6768/" target="_blank" rel="noopener noreferrer" aria-label="Open DevOps Pipeline">
+                        <img src="{{ url_for('static', filename='img/TheDevPipeline.png') }}" alt="DevOps Pipeline">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>DevOps Pipeline</h3>
+                        <p>Developer environment for pipeline debugging.</p>
+                    </div>
+                </article>
+                <article class="tool">
+                    <a class="tool-logo" href="http://fsaelinux.mines.edu:81/" target="_blank" rel="noopener noreferrer" aria-label="Open DevOps MFHome">
+                        <img src="{{ url_for('static', filename='img/MFDev.png') }}" alt="DevOps MFHome">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>DevOps MFHome</h3>
+                        <p>Development and debugging hub for MFHome.</p>
+                    </div>
+                </article>
+                <article class="tool">
+                    <a class="tool-logo" href="http://fsaelinux.mines.edu:8888/" target="_blank" rel="noopener noreferrer" aria-label="Open Dozzle">
+                        <img src="{{ url_for('static', filename='img/DozzleLogo.png') }}" alt="Dozzle">
+                    </a>
+                    <div class="tool-copy">
+                        <h3>Dozzle</h3>
+                        <p>A real-time web-based viewer for Docker containers.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
-    <!-- script to make DevOps cards appear brought to you by chatgpt -->
+
     <script>
         const devopsToggle = document.getElementById("devopsToggle");
-        const devopsCards = document.querySelectorAll(".devops-card");
+        const additionalTools = document.getElementById("additional-devops-tools");
 
         devopsToggle.addEventListener("change", function() {
-            devopsCards.forEach(card => {
-                card.classList.toggle("visible", this.checked);
-            });
+            additionalTools.hidden = !this.checked;
         });
     </script>
 </body>
