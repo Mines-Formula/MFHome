@@ -110,8 +110,9 @@ body {
 }
 
 .tool-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     column-gap: 36px;
     row-gap: 28px;
     margin-top: 24px;
@@ -119,6 +120,7 @@ body {
 
 .tool {
     display: flex;
+    flex: 0 1 220px;
     min-width: 0;
     flex-direction: column;
     align-items: center;
